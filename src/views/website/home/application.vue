@@ -150,7 +150,7 @@ export default {
         type: [],
       },
       rules: {
-        nation: [{ required: true, message: "请输入", trigger: "blur" }, ,],
+        nation: [{ required: true, message: "请输入", trigger: "blur" }, ],
         link: [{ required: true, message: "link", trigger: "change" }],
         date1: [
           {
