@@ -8,11 +8,11 @@
 html,
 body {
   height: 100%;
+  background: #F5F7FA;
 }
 
 #app {
   height: 100%;
-  background: #F5F7FA;
 }
 
 li{

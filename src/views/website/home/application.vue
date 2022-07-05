@@ -75,21 +75,36 @@
           </div>
 
           <div class="info">
-            <div>主体信息</div>
+            <div class="info_title">主体信息</div>
             <el-form-item label="公司" prop="company">
-              <el-input v-model="ruleForm.company" placeholder="请输入公司名称"></el-input>
+              <el-input
+                v-model="ruleForm.company"
+                placeholder="请输入公司名称"
+              ></el-input>
             </el-form-item>
             <el-form-item label="统一社会信用代码/注册登记号" prop="credit">
-              <el-input v-model="ruleForm.credit" placeholder="请输入社会信用代码或注册登记号"></el-input>
+              <el-input
+                v-model="ruleForm.credit"
+                placeholder="请输入社会信用代码或注册登记号"
+              ></el-input>
             </el-form-item>
             <el-form-item label="联系电话" prop="phone">
-              <el-input v-model="ruleForm.phone" placeholder="请输入联系电话"></el-input>
+              <el-input
+                v-model="ruleForm.phone"
+                placeholder="请输入联系电话"
+              ></el-input>
             </el-form-item>
             <el-form-item label="电子邮箱" prop="email">
-              <el-input v-model="ruleForm.email" placeholder="请输入电子邮箱"></el-input>
+              <el-input
+                v-model="ruleForm.email"
+                placeholder="请输入电子邮箱"
+              ></el-input>
             </el-form-item>
             <el-form-item label="联系地址" prop="address">
-              <el-input v-model="ruleForm.address" placeholder="请输入地址"></el-input>
+              <el-input
+                v-model="ruleForm.address"
+                placeholder="请输入地址"
+              ></el-input>
             </el-form-item>
           </div>
 
@@ -135,12 +150,8 @@ export default {
         type: [],
       },
       rules: {
-        nation: [
-          { required: true, message: "请输入", trigger: "blur" },,
-        ],
-        link: [
-          { required: true, message: "link", trigger: "change" },
-        ],
+        nation: [{ required: true, message: "请输入", trigger: "blur" }, ,],
+        link: [{ required: true, message: "link", trigger: "change" }],
         date1: [
           {
             type: "date",
@@ -272,10 +283,20 @@ export default {
       line-height: 22px;
     }
   }
-  .info{
-    background-color: #FFFFFF;
+  .info {
+    background-color: #ffffff;
     border-radius: 16px;
     margin: 20px 0 124px;
+    padding: 56px 80px;
+
+    .info_title {
+      font-size: 16px;
+      font-family: Microsoft YaHei UI-Bold, Microsoft YaHei UI;
+      font-weight: bold;
+      color: #131414;
+      line-height: 24px;
+      margin-bottom: 24px;
+    }
   }
 }
 </style>
