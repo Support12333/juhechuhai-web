@@ -10,6 +10,7 @@
           ref="ruleForm"
           label-width="100px"
           class="demo-ruleForm"
+          label-position="top"
         >
           <div class="basic">
             <div class="basic_title">基本信息</div>
@@ -106,16 +107,54 @@
                 placeholder="请输入地址"
               ></el-input>
             </el-form-item>
-          </div>
+            <el-from-item label="营业执照附件" prop="license">
+              <el-upload
+                class="upload-demo"
+                drag
+                action="https://jsonplaceholder.typicode.com/posts/"
+                multiple
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  <em>点击上传</em> / 拖拽到此区域
+                </div>
+                <div class="el-upload__tip" slot="tip">
+                  上传营业执照（支持PNG/JPG/JPEG，小于10MB）
+                </div>
+              </el-upload>
+            </el-from-item>
 
-          <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')"
-              >确认提交</el-button
-            >
-          </el-form-item>
+            <el-form-item class="submits">
+              <el-button type="primary" @click="submitForm('ruleForm')"
+                >确认提交</el-button
+              >
+            </el-form-item>
+          </div>
         </el-form>
       </div>
     </div>
+    <el-dialog
+      title="开户状态"
+      :visible.sync="dialogVisible"
+      width="30%"
+      center
+      class="dialogs"
+    >
+      <div>状态：开户成功</div>
+      <div class="dialog_nav">
+        <img src="@/assets/images/erwm.png" alt="" />
+        <div>在线合同签署</div>
+      </div>
+      <div class="dialog_txt">
+        合同签署流程：微信扫码 - 进入腾讯电子签 - 查看合同模板 - 手机签名 -
+        合同完成
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="dialogVisible = false"
+          >已签署合同</el-button
+        >
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script >
@@ -150,37 +189,26 @@ export default {
         type: [],
       },
       rules: {
-        nation: [{ required: true, message: "请输入", trigger: "blur" }, ],
+        nation: [{ required: true, message: "请输入", trigger: "blur" }],
         link: [{ required: true, message: "link", trigger: "change" }],
-        date1: [
+        company: [
+          { required: true, message: "请输入公司名称", trigger: "blur" },
+        ],
+        credit: [
           {
-            type: "date",
             required: true,
-            message: "请选择日期",
+            message: "请输入社会信用代码或注册登记号",
             trigger: "change",
           },
         ],
-        date2: [
-          {
-            type: "date",
-            required: true,
-            message: "请选择时间",
-            trigger: "change",
-          },
+        phone: [{ required: true, message: "请输入联系电话", trigger: "blur" }],
+        email: [
+          { required: true, message: "请输入电子邮箱", trigger: "change" },
         ],
-        type: [
-          {
-            type: "array",
-            required: true,
-            message: "请至少选择一个活动性质",
-            trigger: "change",
-          },
-        ],
-        resource: [
-          { required: true, message: "请选择活动资源", trigger: "change" },
-        ],
-        desc: [{ required: true, message: "请填写活动形式", trigger: "blur" }],
+        address: [{ required: true, message: "请输入地址", trigger: "blur" }],
+        // email: [{ required: true, message: "请输入电子邮箱", trigger: "change" }],
       },
+      dialogVisible: false,
     };
   },
   methods: {
@@ -232,6 +260,17 @@ export default {
     padding: 56px 80px;
     margin: 96px 0 20px 0;
     border-radius: 16px;
+
+    /deep/.el-checkbox__inner{
+      width: 16px;
+      height: 16px;
+    }
+    /deep/.el-checkbox__inner::after{
+      border: 2px solid #FFFFFF;
+      border-left: 0;
+      border-top: 0;
+      left: 5px;
+    }
 
     .basic_title {
       font-size: 16px;
@@ -297,6 +336,66 @@ export default {
       line-height: 24px;
       margin-bottom: 24px;
     }
+
+    .submits {
+      text-align: center;
+      margin-top: 56px;
+
+      /deep/.el-button {
+        padding: 16px 64px;
+        border-radius: 6px;
+
+        > span {
+          font-size: 14px;
+          font-family: Microsoft YaHei UI-Regular, Microsoft YaHei UI;
+          font-weight: 400;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+
+  /deep/.el-form-item__label {
+    color: #131414;
+  }
+}
+
+.dialogs {
+  div {
+    font-size: 20px;
+    font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+    font-weight: 400;
+    color: #131414;
+    line-height: 30px;
+  }
+  /deep/.el-dialog {
+    border-radius: 16px;
+    padding: 72px 56px;
+    width: 840px !important;
+  }
+  /deep/.el-dialog__title {
+    font-size: 32px;
+    font-family: Microsoft YaHei UI-Bold, Microsoft YaHei UI;
+    font-weight: bold;
+    color: #131414;
+    line-height: 42px;
+  }
+  /deep/.el-button--primary {
+    font-size: 14px;
+    font-family: Microsoft YaHei UI-Regular, Microsoft YaHei UI;
+    font-weight: 400;
+  }
+
+  .dialog_nav {
+    text-align: center;
+
+    > img {
+      width: 164px;
+      height: 164px;
+    }
+  }
+  .dialog_txt {
+    margin: 40px 0;
   }
 }
 </style>

@@ -22,5 +22,10 @@ export default new Router({
       name: 'policy',
         component:  ()=> { return import('@/views/website/home/policy.vue') }
     },
+    {
+      path: '/home_left',
+      name: 'home_left',
+        component:  ()=> { return import('@/views/website/home/home_left.vue') }
+    },
   ]
 })
